@@ -4,7 +4,7 @@ Per le immagini va bene utilizzare qualsiasi servizio di placeholder ad es: http
 - Prendendo come riferimento il layout di esempio presente nell’html, stampiamo i post del nostro feed.
 Inserire a inizio del file JavaScript una sezione di commento dove scrivere gli step richiesti di logica in italiano, per aiutarvi a ragionare prima della stesura del codice. */
 
-// 1. Creare array di oggetti
+// Data Object
 const data = [
     {
         author: 'Phil Mangione',
@@ -48,7 +48,16 @@ const data = [
     },
 ];
 
-// 2. Stampa l'array nel layout html fornito
+// DOM refs
+const container = document.getElementById('container');
+
+// Invoke printer function
+postPrinter(data, container);
+
+
+/**
+ * FUNCTIONS
+ */
 function postPrinter(dataArray, domRef) {
     // DOM content reset
     domRef.innerHTML = '';
@@ -58,7 +67,7 @@ function postPrinter(dataArray, domRef) {
         // Estrapola singolo oggetto dell'array e salvalo in una variabile dedicata
         const data = dataArray[i];
 
-        // Concatena il layout html tramite interpolazione
+        // Concatena il layout html tramite interpolazione nell'elemento dom passato alla funzione
         domRef.innerHTML += `
         <div class="post">
             <div class="post__header">
