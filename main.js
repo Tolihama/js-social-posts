@@ -5,5 +5,91 @@ Per le immagini va bene utilizzare qualsiasi servizio di placeholder ad es: http
 Inserire a inizio del file JavaScript una sezione di commento dove scrivere gli step richiesti di logica in italiano, per aiutarvi a ragionare prima della stesura del codice. */
 
 // 1. Creare array di oggetti
+const data = [
+    {
+        author: 'Phil Mangione',
+        avatar: 'https://unsplash.it/300/300?image=15',
+        postDate: '4 mesi fa',
+        postText: 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
+        postImage: 'https://unsplash.it/600/300?image=171',
+        likes: 80,
+    },
+    {
+        author: 'Sofia Perlari',
+        avatar: 'https://unsplash.it/300/300?image=16',
+        postDate: '4 mesi fa',
+        postText: 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
+        postImage: 'https://unsplash.it/600/300?image=172',
+        likes: 198,
+    },
+    {
+        author: 'Paolo',
+        avatar: 'https://unsplash.it/300/300?image=17',
+        postDate: '4 mesi fa',
+        postText: 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
+        postImage: 'https://unsplash.it/600/300?image=173',
+        likes: 45,
+    },
+    {
+        author: 'Alfredo',
+        avatar: 'https://unsplash.it/300/300?image=18',
+        postDate: '4 mesi fa',
+        postText: 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
+        postImage: 'https://unsplash.it/600/300?image=174',
+        likes: 46,
+    },
+    {
+        author: 'Fabio',
+        avatar: 'https://unsplash.it/300/300?image=19',
+        postDate: '4 mesi fa',
+        postText: 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
+        postImage: 'https://unsplash.it/600/300?image=175',
+        likes: 47,
+    },
+];
 
 // 2. Stampa l'array nel layout html fornito
+function postPrinter(dataArray, domRef) {
+    // DOM content reset
+    domRef.innerHTML = '';
+
+    // Ciclo su ogni oggetto dell'array
+    for (let i = 0; i < dataArray.length; i++) {
+        // Estrapola singolo oggetto dell'array e salvalo in una variabile dedicata
+        const data = dataArray[i];
+
+        // Concatena il layout html tramite interpolazione
+        domRef.innerHTML += `
+        <div class="post">
+            <div class="post__header">
+                <div class="post-meta">                    
+                    <div class="post-meta__icon">
+                        <img class="profile-pic" src="${data.avatar}" alt="${data.author}">                    
+                    </div>
+                    <div class="post-meta__data">
+                        <div class="post-meta__author">${data.author}</div>
+                        <div class="post-meta__time">${data.postDate}</div>
+                    </div>                    
+                </div>
+            </div>
+            <div class="post__text">${data.postText}</div>
+            <div class="post__image">
+                <img src="${data.postImage}" alt="">
+            </div>
+            <div class="post__footer">
+                <div class="likes js-likes">
+                    <div class="likes__cta">
+                        <a class="like-button  js-like-button" href="#" data-postid="1">
+                            <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                            <span class="like-button__label">Mi Piace</span>
+                        </a>
+                    </div>
+                    <div class="likes__counter">
+                        Piace a <b id="like-counter-1" class="js-likes-counter">${data.likes}</b> persone
+                    </div>
+                </div> 
+            </div>            
+        </div>
+        `;
+    }
+}
